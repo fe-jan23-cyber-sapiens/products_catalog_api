@@ -1,0 +1,14 @@
+{
+  "env": {
+    "node": true,
+    "commonjs": true,
+    "es2021": true
+  },
+  "extends": "@mate-academy/eslint-config",
+  "overrides": [],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {}
+}

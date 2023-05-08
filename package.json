@@ -1,0 +1,43 @@
+{
+  "name": "products_catalog_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/eslint-parser": "^7.21.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22",
+    "pg": "^8.10.0",
+    "sequelize": "^6.31.1"
+  },
+  "devDependencies": {
+    "@mate-academy/eslint-config": "0.0.25",
+    "eslint": "^8.40.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "2.8.8"
+  },
+  "scripts": {
+    "start": "nodemon src/app.js",
+    "lint": "eslint . --ignore-path .gitignore",
+    "format": "prettier --write . --ignore-path .gitignore",
+    "fix-style": "npm run format && npm run lint -- --fix",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fe-jan23-cyber-sapiens/products_catalog_api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fe-jan23-cyber-sapiens/products_catalog_api/issues"
+  },
+  "homepage": "https://github.com/fe-jan23-cyber-sapiens/products_catalog_api",
+  "lint-staged": {
+    "*.js": "npm run lint"
+  }
+}
