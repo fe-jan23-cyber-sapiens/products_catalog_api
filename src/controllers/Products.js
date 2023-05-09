@@ -55,10 +55,7 @@ const update = async(req, res) => {
       return;
     }
 
-    const updatedProduct = await productsService.update(
-      productId,
-      productBody,
-    );
+    const updatedProduct = await productsService.update(productId, productBody);
 
     res.send(updatedProduct);
   } catch (error) {

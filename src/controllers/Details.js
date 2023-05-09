@@ -53,10 +53,7 @@ const update = async(req, res) => {
       return;
     }
 
-    const updatedProduct = await detailsService.update(
-      productId,
-      productBody,
-    );
+    const updatedProduct = await detailsService.update(productId, productBody);
 
     res.send(updatedProduct);
   } catch (error) {
