@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 'use strict';
 
 const { Product } = require('../models/Product');
