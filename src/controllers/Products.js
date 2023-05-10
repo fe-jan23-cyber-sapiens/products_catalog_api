@@ -57,6 +57,17 @@ const getDiscount = async(req, res) => {
   }
 };
 
+const getRandom = async(req, res) => {
+  try {
+    const productsRandom = await productsService.getRandom();
+
+    res.send(productsRandom);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+};
+
 const update = async(req, res) => {
   const { productId } = req.params;
 
@@ -123,6 +134,7 @@ const remove = async(req, res) => {
 module.exports = {
   getAll,
   getNew,
+  getRandom,
   getDiscount,
   create,
   remove,

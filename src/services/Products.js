@@ -2,7 +2,7 @@
 
 const { Product } = require('../models/Product');
 const { getNewId } = require('../getNewId');
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 
 const getAll = async(category) => {
   let products;
@@ -48,6 +48,20 @@ const getDiscount = async() => {
   return discountedProducts;
 };
 
+const getRandom = async() => {
+  const randomPhoneProducts = await Product.findAll({
+    where: {
+      category: {
+        [Op.eq]: 'phones',
+      },
+    },
+    order: Sequelize.literal('random()'),
+    limit: 12,
+  });
+
+  return randomPhoneProducts;
+};
+
 const update = (productId, productBody) => {
   return Product.update(productBody, {
     where: {
@@ -78,6 +92,7 @@ module.exports = {
   getAll,
   getById,
   getNew,
+  getRandom,
   getDiscount,
   create,
   update,
