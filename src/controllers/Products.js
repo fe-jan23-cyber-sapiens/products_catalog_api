@@ -35,6 +35,28 @@ const getOne = async(req, res) => {
   }
 };
 
+const getNew = async(req, res) => {
+  try {
+    const newProducts = await productsService.getNew();
+
+    res.send(newProducts);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+};
+
+const getDiscount = async(req, res) => {
+  try {
+    const productsWithDiscount = await productsService.getDiscount();
+
+    res.send(productsWithDiscount);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+};
+
 const update = async(req, res) => {
   const { productId } = req.params;
 
@@ -100,6 +122,8 @@ const remove = async(req, res) => {
 
 module.exports = {
   getAll,
+  getNew,
+  getDiscount,
   create,
   remove,
   update,

@@ -2,6 +2,7 @@
 
 const { Product } = require('../models/Product');
 const { getNewId } = require('../getNewId');
+const { Op } = require('sequelize');
 
 const getAll = async(category) => {
   let products;
@@ -22,6 +23,29 @@ const getAll = async(category) => {
 
 const getById = (productId) => {
   return Product.findByPk(productId);
+};
+
+const getNew = async() => {
+  const latestProducts = await Product.findAll({
+    order: [['year', 'DESC']],
+    limit: 12,
+  });
+
+  return latestProducts;
+};
+
+const getDiscount = async() => {
+  const discountedProducts = await Product.findAll({
+    where: {
+      price: {
+        [Op.not]: null,
+      },
+    },
+    order: [['createdAt', 'DESC']],
+    limit: 12,
+  });
+
+  return discountedProducts;
 };
 
 const update = (productId, productBody) => {
@@ -53,6 +77,8 @@ const remove = async(productId) => {
 module.exports = {
   getAll,
   getById,
+  getNew,
+  getDiscount,
   create,
   update,
   remove,
