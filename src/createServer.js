@@ -11,6 +11,7 @@ function createServer() {
 
   app.use(cors());
 
+  app.use(express.static('public'));
   app.use('/products', express.json(), productsRouter);
   app.use('/details', express.json(), detailsRouter);
 
