@@ -3,8 +3,18 @@
 
 const { Details } = require('../models/Details');
 
-const getAll = async() => {
-  const products = await Details.findAll();
+const getAll = async(namespaceId) => {
+  let products;
+
+  if (namespaceId) {
+    products = await Details.findAll({
+      where: {
+        namespaceId,
+      },
+    });
+  } else {
+    products = await Details.findAll();
+  }
 
   return products;
 };

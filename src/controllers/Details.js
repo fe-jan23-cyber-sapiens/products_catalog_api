@@ -4,8 +4,10 @@
 const detailsService = require('../services/Details');
 
 const getAll = async(req, res) => {
+  const { namespaceId } = req.query;
+
   try {
-    const products = await detailsService.getAll();
+    const products = await detailsService.getAll(namespaceId);
 
     res.send(products);
   } catch (error) {
