@@ -9,6 +9,7 @@ productsRouter.get('/', productsControllers.getAll);
 productsRouter.get('/new', productsControllers.getNew);
 productsRouter.get('/discount', productsControllers.getDiscount);
 productsRouter.get('/recommended', productsControllers.getRandom);
+productsRouter.get('/:productId', productsControllers.getOne);
 
 productsRouter.post('/', productsControllers.create);
 productsRouter.delete('/:productId', productsControllers.remove);

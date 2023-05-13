@@ -22,7 +22,11 @@ const getAll = async(category) => {
 };
 
 const getById = (productId) => {
-  return Product.findByPk(productId);
+  return Product.findAll({
+    where: {
+      phoneId: productId,
+    },
+  });
 };
 
 const getNew = async() => {
