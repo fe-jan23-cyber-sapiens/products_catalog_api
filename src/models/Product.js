@@ -4,12 +4,6 @@ const { sequelize } = require('../utils/db');
 const Product = sequelize.define(
   'Product',
   {
-    id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-    },
-
     category: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -19,6 +13,7 @@ const Product = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      primaryKey: true,
     },
 
     itemId: {

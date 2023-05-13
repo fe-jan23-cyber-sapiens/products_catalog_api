@@ -1,7 +1,6 @@
 'use strict';
 
 const { Product } = require('../models/Product');
-const { getNewId } = require('../getNewId');
 const { Op, Sequelize } = require('sequelize');
 
 const getAll = async(category) => {
@@ -10,11 +9,11 @@ const getAll = async(category) => {
   if (category) {
     products = await Product.findAll({
       where: { category },
-      order: ['id'],
+      order: ['year'],
     });
   } else {
     products = await Product.findAll({
-      order: ['id'],
+      order: ['year'],
     });
   }
 
@@ -22,11 +21,7 @@ const getAll = async(category) => {
 };
 
 const getById = (productId) => {
-  return Product.findAll({
-    where: {
-      phoneId: productId,
-    },
-  });
+  return Product.findByPk(productId);
 };
 
 const getNew = async() => {
@@ -69,17 +64,14 @@ const getRandom = async() => {
 const update = (productId, productBody) => {
   return Product.update(productBody, {
     where: {
-      id: productId,
+      phoneId: productId,
     },
     returning: true,
   });
 };
 
 const create = async(productBody) => {
-  const products = await getAll();
-
   const newProduct = {
-    id: getNewId(products),
     ...productBody,
   };
 
@@ -88,7 +80,7 @@ const create = async(productBody) => {
 
 const remove = async(productId) => {
   return Product.destroy({
-    where: { id: productId },
+    where: { phoneId: productId },
   });
 };
 
