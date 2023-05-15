@@ -23,10 +23,12 @@
 <h3>Search endpoints</h3>
 
 <ul>
-  <li><code>GET /products/search?name=:name</code>: Searches for products by name.</li>
-  <li><code>GET /products/search?description=:description</code>: Searches for products by description.</li>
-  <li><code>GET /products/search?priceMin=:min&priceMax=:max</code>: Searches for products within a given price range.</li>
-  <li><code>GET /products/search?category=:category</code>: Searches for products by category.</li>
+  <li><code>GET /products</code>: Get all products.</li>
+  <li><code>GET /products/${productId}</code>: Get one products.</li>
+  <li><code>GET /products?category=${category}</code>: Get products by the category.</li>
+  <li><code>GET /products/new</code>: Get newest products.</li>
+  <li><code>GET /products/discount</code>: Get best prices products.</li>
+  <li><code>GET /products/recommended</code>: Get recomended products.</li>
 </ul>
 
 <h2>Contributing</h2>
