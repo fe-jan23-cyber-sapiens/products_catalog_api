@@ -27,24 +27,40 @@ const getById = (productId) => {
 const getNew = async() => {
   const latestProducts = await Product.findAll({
     order: [['year', 'DESC']],
-    limit: 12,
+    limit: 20,
   });
 
   return latestProducts;
 };
 
 const getDiscount = async() => {
-  const discountedProducts = await Product.findAll({
-    where: {
-      price: {
-        [Op.not]: null,
-      },
-    },
-    order: [['createdAt', 'DESC']],
-    limit: 12,
-  });
+  const discountedProducts = await getAll();
 
-  return discountedProducts;
+  const discountedProductsDESC = discountedProducts.sort(
+    (product1, product2) => {
+      const firstDiscount = product1.fullPrice - Number(product1.price);
+      const secondDiscount = product2.fullPrice - Number(product2.price);
+
+      return secondDiscount - firstDiscount;
+    },
+  );
+
+  const uniqueProducts = [];
+
+  for (const product of discountedProductsDESC) {
+    const phoneModel = product.phoneId.split('-').slice(0, -2).join('-');
+
+    if (!uniqueProducts.some(
+      uniqueProduct => uniqueProduct.phoneId
+        .split('-')
+        .slice(0, -2)
+        .join('-') === phoneModel,
+    )) {
+      uniqueProducts.push(product);
+    }
+  }
+
+  return uniqueProducts;
 };
 
 const getRandom = async() => {
@@ -55,7 +71,7 @@ const getRandom = async() => {
       },
     },
     order: Sequelize.literal('random()'),
-    limit: 12,
+    limit: 20,
   });
 
   return randomPhoneProducts;
