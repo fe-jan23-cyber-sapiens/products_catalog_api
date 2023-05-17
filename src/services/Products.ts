@@ -1,9 +1,10 @@
 'use strict';
 
-const { Product } = require('../models/Product');
-const { Op, Sequelize } = require('sequelize');
+import { Product } from '../models/Product';
+import { Op, Sequelize } from 'sequelize';
+import { ProductType } from "../types/ProductType";
 
-const getAll = async(category) => {
+const getAll = async(category: string) => {
   let products;
 
   if (category) {
@@ -20,7 +21,7 @@ const getAll = async(category) => {
   return products;
 };
 
-const getById = (productId) => {
+export const getById = (productId: string) => {
   return Product.findByPk(productId);
 };
 
@@ -61,7 +62,7 @@ const getRandom = async() => {
   return randomPhoneProducts;
 };
 
-const update = (productId, productBody) => {
+const update = (productId: string, productBody: Partial<ProductType>) => {
   return Product.update(productBody, {
     where: {
       phoneId: productId,
@@ -70,7 +71,7 @@ const update = (productId, productBody) => {
   });
 };
 
-const create = async(productBody) => {
+const create = async(productBody: ProductType) => {
   const newProduct = {
     ...productBody,
   };
@@ -78,19 +79,21 @@ const create = async(productBody) => {
   return Product.create(newProduct);
 };
 
-const remove = async(productId) => {
+const remove = async(productId: string) => {
   return Product.destroy({
     where: { phoneId: productId },
   });
 };
 
-module.exports = {
+export const productsService = {
   getAll,
   getById,
   getNew,
-  getRandom,
   getDiscount,
-  create,
+  getRandom,
   update,
+  create,
   remove,
 };
+
+

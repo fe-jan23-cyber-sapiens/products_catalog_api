@@ -1,9 +1,9 @@
 'use strict';
 
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../utils/db');
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../utils/db';
 
-const Details = sequelize.define(
+export const Details = sequelize.define(
   'Details',
   {
     id: {
@@ -96,6 +96,3 @@ const Details = sequelize.define(
 
 Details.sync({ alter: true });
 
-module.exports = {
-  Details,
-};

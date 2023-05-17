@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 'use strict';
 
-const { Details } = require('../models/Details');
+import { Details } from '../models/Details';
+import { DetailsType } from '../types/DetailsType';
 
-const getAll = async(namespaceId) => {
+const getAll = async(namespaceId: string) => {
   let products;
 
   if (namespaceId) {
@@ -19,11 +20,11 @@ const getAll = async(namespaceId) => {
   return products;
 };
 
-const getById = (productId) => {
+const getById = (productId: string) => {
   return Details.findByPk(productId);
 };
 
-const update = (productId, productBody) => {
+const update = (productId: string, productBody: Partial<DetailsType>) => {
   return Details.update(productBody, {
     where: {
       id: productId,
@@ -32,20 +33,20 @@ const update = (productId, productBody) => {
   });
 };
 
-const create = async(productBody) => {
+const create = async(productBody: Partial<DetailsType>) => {
   return Details.create(productBody);
 };
 
-const remove = async(productId) => {
+const remove = async(productId: string) => {
   return Details.destroy({
     where: { id: productId },
   });
 };
 
-module.exports = {
+export const detailsService = {
   getAll,
   getById,
   create,
-  update,
   remove,
+  update
 };
