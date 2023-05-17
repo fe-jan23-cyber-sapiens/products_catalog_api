@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 'use strict';
 
-const detailsService = require('../services/Details');
+import { detailsService } from '../services/Details';
+import { Request, Response } from 'express';
 
-const getAll = async(req, res) => {
+export const getAll = async(req: Request, res: Response) => {
   const { namespaceId } = req.query;
 
   try {
-    const products = await detailsService.getAll(namespaceId);
+    const products = await detailsService.getAll(namespaceId as string);
 
     res.send(products);
   } catch (error) {
@@ -16,7 +17,7 @@ const getAll = async(req, res) => {
   }
 };
 
-const getOne = async(req, res) => {
+export const getOne = async(req: Request, res: Response) => {
   const { productId } = req.params;
 
   try {
@@ -35,7 +36,7 @@ const getOne = async(req, res) => {
   }
 };
 
-const update = async(req, res) => {
+export const update = async(req: Request, res: Response) => {
   const { productId } = req.params;
 
   try {
@@ -64,7 +65,7 @@ const update = async(req, res) => {
   }
 };
 
-const create = async(req, res) => {
+export const create = async(req: Request, res: Response) => {
   const body = req.body;
 
   try {
@@ -78,7 +79,7 @@ const create = async(req, res) => {
   }
 };
 
-const remove = async(req, res) => {
+export const remove = async(req: Request, res: Response) => {
   const { productId } = req.params;
   const foundProduct = await detailsService.getById(productId);
 
@@ -92,10 +93,3 @@ const remove = async(req, res) => {
   res.sendStatus(204);
 };
 
-module.exports = {
-  getAll,
-  getOne,
-  create,
-  remove,
-  update,
-};

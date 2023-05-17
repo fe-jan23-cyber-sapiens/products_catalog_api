@@ -1,7 +1,7 @@
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../utils/db');
+import { DataTypes } from 'sequelize';
+import { sequelize } from '../utils/db';
 
-const Product = sequelize.define(
+export const Product = sequelize.define(
   'Product',
   {
     category: {
@@ -44,7 +44,6 @@ const Product = sequelize.define(
 
     capacity: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
 
     color: {
@@ -54,7 +53,6 @@ const Product = sequelize.define(
 
     ram: {
       type: DataTypes.STRING,
-      allowNull: false,
     },
 
     year: {
@@ -74,6 +72,3 @@ const Product = sequelize.define(
 
 Product.sync({ alter: true });
 
-module.exports = {
-  Product,
-};

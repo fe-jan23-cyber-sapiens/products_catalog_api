@@ -1,13 +1,14 @@
 /* eslint-disable no-console */
 'use strict';
 
-const productsService = require('../services/Products');
+import  { productsService } from '../services/Products';
+import { Request, Response } from 'express';
 
-const getAll = async(req, res) => {
+export const getAll = async(req: Request, res: Response) => {
   try {
     const { category } = req.query;
 
-    const products = await productsService.getAll(category);
+    const products = await productsService.getAll(category as string);
 
     res.send(products);
   } catch (error) {
@@ -16,7 +17,7 @@ const getAll = async(req, res) => {
   }
 };
 
-const getOne = async(req, res) => {
+export const getOne = async(req: Request, res: Response) => {
   const { productId } = req.params;
 
   try {
@@ -35,7 +36,7 @@ const getOne = async(req, res) => {
   }
 };
 
-const getNew = async(req, res) => {
+export const getNew = async(req: Request, res: Response) => {
   try {
     const newProducts = await productsService.getNew();
 
@@ -46,7 +47,7 @@ const getNew = async(req, res) => {
   }
 };
 
-const getDiscount = async(req, res) => {
+export const getDiscount = async(req: Request, res: Response) => {
   try {
     const productsWithDiscount = await productsService.getDiscount();
 
@@ -57,7 +58,7 @@ const getDiscount = async(req, res) => {
   }
 };
 
-const getRandom = async(req, res) => {
+export const getRandom = async(req: Request, res: Response) => {
   try {
     const productsRandom = await productsService.getRandom();
 
@@ -68,7 +69,7 @@ const getRandom = async(req, res) => {
   }
 };
 
-const update = async(req, res) => {
+export const update = async(req: Request, res: Response) => {
   const { productId } = req.params;
 
   try {
@@ -97,7 +98,7 @@ const update = async(req, res) => {
   }
 };
 
-const create = async(req, res) => {
+export const create = async(req: Request, res: Response) => {
   const body = req.body;
 
   try {
@@ -111,7 +112,7 @@ const create = async(req, res) => {
   }
 };
 
-const remove = async(req, res) => {
+export const remove = async(req: Request, res: Response) => {
   const { productId } = req.params;
 
   try {
@@ -131,13 +132,3 @@ const remove = async(req, res) => {
   }
 };
 
-module.exports = {
-  getAll,
-  getNew,
-  getRandom,
-  getDiscount,
-  create,
-  remove,
-  update,
-  getOne,
-};
