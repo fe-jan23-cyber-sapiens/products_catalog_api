@@ -4,7 +4,7 @@ import { Product } from '../models/Product';
 import { Op, Sequelize } from 'sequelize';
 import { ProductType } from "../types/ProductType";
 
-const getAll = async(category: string) => {
+const getAll = async(category?: string) => {
   let products;
 
   if (category) {
