@@ -6,7 +6,9 @@ import { Request, Response } from 'express';
 
 export const getAll = async(req: Request, res: Response) => {
   try {
-    const orders = await ordersService.getAll();
+    const { userId } = req.query;
+
+    const orders = await ordersService.getAll(userId as string);
 
     res.send(orders);
   } catch (error) {

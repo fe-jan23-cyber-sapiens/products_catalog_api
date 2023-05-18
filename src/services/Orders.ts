@@ -4,8 +4,18 @@
 import { Order } from '../models/Order';
 import { Order as OrderType } from '../types/OrderType';
 
-const getAll = async() => {
-  const orders = await Order.findAll();
+const getAll = async(userId?: string) => {
+  let orders;
+
+  if (userId) {
+    orders = await Order.findAll({
+      where: {
+        userId,
+      }
+    });
+  } else {
+    orders = await Order.findAll();
+  }
 
   return orders;
 };
