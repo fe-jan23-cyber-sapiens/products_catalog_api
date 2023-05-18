@@ -26,7 +26,7 @@ export const Order = sequelize.define(
     },
 
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
 
