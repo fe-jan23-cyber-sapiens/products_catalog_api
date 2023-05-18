@@ -9,6 +9,6 @@ export interface Order {
   userId: string,
   fullName: string,
   email: string,
-  phone: number,
+  phone: string,
   products: ProductWithCount[],
 }
