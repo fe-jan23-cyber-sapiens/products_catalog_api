@@ -8,6 +8,7 @@ import cors from 'cors';
 
 import productsRouter from './routes/Products';
 import detailsRouter from './routes/Details';
+import ordersRouter from './routes/Order';
 
 export const createServer = () => {
   const app = express();
@@ -17,6 +18,7 @@ export const createServer = () => {
   app.use(express.static('public'));
   app.use('/products', express.json(), productsRouter);
   app.use('/details', express.json(), detailsRouter);
+  app.use('/orders', express.json(), ordersRouter);
 
   return app;
 };
